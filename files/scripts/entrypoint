@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [ ! -d "${CHECK_DESTINATION}" ]; then
+    mkdir -p "${CHECK_DESTINATION}"
+fi
+
+echo "NGINX starting now ..."
+nginx &
+
+if [ $# -lt 1 ]; then
+    # no command was given, so start regular process
+    exec scan-ports
+else
+    # alternative startup command was defined
+    exec "$@"
+fi

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+runTheScan() {
+    echo "Starting the Port scan ($( date "+%d.%m.%Y %H:%M:%S" ))"
+    outfile="${CHECK_DESTINATION}/$( date "+%Y-%m-%d_%H.%M.%S" ).html"
+    nmap -oX /tmp/scan.xml --stylesheet /usr/share/nmap/nmap.xsl -p "${CHECK_PORTS}" "${CHECK_HOSTS}" > /dev/null
+    xsltproc /tmp/scan.xml -o "${outfile}"
+    echo "Report generated at ${outfile} ($( date "+%d.%m.%Y %H:%M:%S" ))"
+}
+
+while :; do
+    runTheScan
+    sleep $(( ${CHECK_INTERVAL} * 60 ))
+done

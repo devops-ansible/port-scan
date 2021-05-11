@@ -1,0 +1,40 @@
+user             nginx;
+pid              /run/nginx.pid;
+daemon           off;
+worker_processes auto;
+
+http {
+
+    ###
+    ## Basic Settings
+    ###
+    include      /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    access_log {{ ACCESS_LOG_DST | default ('/dev/stdout') }};
+    error_log  {{ ERROR_LOG_DST  | default ('/dev/stderr') }};
+
+    ###
+    ## Gzip Settings
+    ###
+    gzip on;
+
+    ###
+    ## Server Definition
+    ###
+    server {
+        listen 0.0.0.0:80 default;
+        root {{ CHECK_DESTINATION }};
+
+        location / {
+            autoindex on;
+            index index.html index.htm;
+        }
+
+    }
+
+}
+
+events {
+    worker_connections 1024;
+}
