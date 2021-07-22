@@ -13,3 +13,11 @@ This image is customizable by these environmental variables:
 | **CHECK_HOSTS**    | *"127.0.0.1"* | yes                | List of Hosts, you want to be checked. E.g. `<Hostname> <Hostname>`, `<Hostname> <IP>` or even `<IP>/<Netmask>`. For more options, see manual of `nmap`. |
 | **CHECK_PORTS**    | *"1-1024"*    | yes                | List of Ports to be checked. |
 | **CHECK_INTERVAL** | *"1440"*      | yes                | Timeinterval in minutes to create a new report. Defaults to 24 hours ( = 1440 minutes ). |
+
+## Contribution guidelines
+
+This Repository is Creative Commons non Commercial - You can contribute by forking and using pull requests. The team will review them asap.
+
+## last built
+
+0000-00-00 00:00:00
